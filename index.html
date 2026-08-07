@@ -303,6 +303,8 @@ Mira nuestros trabajos aquí: https://macceisa.github.io/palomares.web/</textare
                 <div id="listaServicios"></div>
                 <hr>
                 <p style="font-size:0.8rem; color:#777;">Los cambios se guardan automáticamente en tu navegador.</p>
+                <!-- BOTÓN AGREGADO PARA SUPABASE -->
+                <button class="btn-admin" id="btnSincronizarAhora" style="background: var(--dark); color: white;">🔄 Guardar en Supabase</button>
             </div>
         </div>
     </div>
@@ -625,6 +627,83 @@ Mira nuestros trabajos aquí: https://macceisa.github.io/palomares.web/</textare
         document.getElementById('nuevoServicioNombre').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') document.getElementById('btnAgregarServicio').click();
         });
+
+        // ============================================
+        // 9. SUPABASE - AGREGADO SIN TOCAR NADA MÁS
+        // ============================================
+        const SUPABASE_URL = 'https://rvvvlrbtmhfbkygzcebw.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_J2uG3_9SeR4VAWei9w_7bA_2WXxsSQ5';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Guardar en Supabase
+        async function guardarEnSupabase() {
+            const imagenes = obtenerDatos('palomares_imagenes', imagenesPorDefecto);
+            const servicios = obtenerDatos('palomares_servicios', serviciosPorDefecto);
+            
+            try {
+                // Limpiar tablas
+                await supabaseClient.from('portafolio').delete().neq('id', 0);
+                await supabaseClient.from('servicios').delete().neq('id', 0);
+                
+                // Insertar fotos
+                const fotosParaSubir = imagenes.map(item => ({
+                    url: typeof item === 'string' ? item : item.url,
+                    descripcion: typeof item === 'string' ? 'Obra Realizada' : (item.desc || 'Obra Realizada')
+                }));
+                await supabaseClient.from('portafolio').insert(fotosParaSubir);
+                
+                // Insertar servicios
+                const serviciosParaSubir = servicios.map(item => ({
+                    nombre: item.nombre,
+                    descripcion: item.desc,
+                    icono: item.icono || 'fa-tools'
+                }));
+                await supabaseClient.from('servicios').insert(serviciosParaSubir);
+                
+                alert('✅ Datos guardados en Supabase');
+            } catch (error) {
+                console.error('Error al guardar en Supabase:', error);
+                alert('❌ Error al guardar en Supabase');
+            }
+        }
+
+        // Cargar desde Supabase
+        async function cargarDesdeSupabase() {
+            try {
+                const { data: fotos } = await supabaseClient.from('portafolio').select('*');
+                if (fotos && fotos.length > 0) {
+                    const datosFotos = fotos.map(item => ({
+                        url: item.url,
+                        desc: item.descripcion || 'Obra Realizada'
+                    }));
+                    guardarDatos('palomares_imagenes', datosFotos);
+                }
+                
+                const { data: servicios } = await supabaseClient.from('servicios').select('*');
+                if (servicios && servicios.length > 0) {
+                    const datosServicios = servicios.map(item => ({
+                        nombre: item.nombre,
+                        desc: item.descripcion,
+                        icono: item.icono || 'fa-tools'
+                    }));
+                    guardarDatos('palomares_servicios', datosServicios);
+                }
+                
+                renderizarPortafolio();
+                renderizarServicios();
+                console.log('✅ Datos cargados desde Supabase');
+            } catch (error) {
+                console.error('Error al cargar desde Supabase:', error);
+            }
+        }
+
+        // Botón para sincronizar en el panel admin
+        document.getElementById('btnSincronizarAhora').addEventListener('click', function() {
+            guardarEnSupabase();
+        });
+
+        // Cargar datos al iniciar
+        cargarDesdeSupabase();
     </script>
 </body>
 </html>
