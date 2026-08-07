@@ -2,7 +2,7 @@
   "name": "Construcciones Palomares",
   "short_name": "Palomares",
   "description": "Especialistas en obra residencial, comercial y mantenimiento de climas.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0f0f0f",
   "theme_color": "#d4af37",
