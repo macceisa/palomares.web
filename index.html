@@ -2,8 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Construcciones Palomares</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/W3gTwW1Z/Whats-App-Image-2026-08-06-at-11-25-25-PM.jpg">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/W3gTwW1Z/Whats-App-Image-2026-08-06-at-11-25-25-PM.jpg">
+    <link rel="manifest" href="manifest.json">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,12 +21,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; }
 
-        header { position: relative; padding: 40px 0; text-align: center; border-bottom: 6px solid var(--gold); background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; overflow: hidden; }
-        header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center, rgba(255,255,255,0.9) 10%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.1) 100%); pointer-events: none; }
-        .logo-huge { position: relative; z-index: 2; height: 180px; width: auto; mix-blend-mode: multiply; filter: contrast(1.2); }
+        header { position: relative; padding: 30px 0; text-align: center; border-bottom: 6px solid var(--gold); background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; overflow: hidden; cursor: pointer; min-height: 220px; display: flex; align-items: center; justify-content: center; }
+        header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center, rgba(255,255,255,0.85) 10%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.1) 100%); pointer-events: none; }
+        .logo-huge { position: relative; z-index: 2; width: 90%; max-width: 700px; height: auto; mix-blend-mode: multiply; filter: contrast(1.2); object-fit: contain; }
 
         nav { background-color: var(--dark); padding: 18px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        nav ul { list-style: none; display: flex; justify-content: center; gap: 40px; margin: 0; padding: 0; }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 40px; margin: 0; padding: 0; flex-wrap: wrap; }
         nav a { color: #fff; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; transition: color 0.3s; }
         nav a:hover { color: var(--gold); }
         nav a.btn-nav { background-color: var(--gold); color: var(--dark) !important; padding: 10px 25px; border-radius: 30px; }
@@ -46,7 +53,7 @@
 
         .services { background-color: var(--gray); padding: 80px 20px; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .service-card { background: #fff; padding: 40px 30px; border-left: 8px solid var(--dark); transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 4px; }
+        .service-card { background: #fff; padding: 40px 30px; border-left: 8px solid var(--dark); transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 4px; position: relative; }
         .service-card:hover { border-left: 8px solid var(--gold); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .service-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
         .service-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; }
@@ -54,7 +61,7 @@
 
         .form-section { background-color: #fff; padding: 80px 20px; }
         .form-container { max-width: 600px; margin: 0 auto; background: #fff; padding: 50px 40px; border: 2px solid var(--dark); border-radius: 8px; box-shadow: 10px 10px 0px var(--gold); text-align: center; }
-        .form-container .logo-huge { height: 120px; margin-bottom: 25px; mix-blend-mode: multiply; }
+        .form-container .logo-huge { height: 80px; margin-bottom: 25px; mix-blend-mode: multiply; object-fit: contain; }
         .form-container h2 { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
         .form-container p { color: #777; margin-bottom: 30px; }
         
@@ -64,29 +71,47 @@
         .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold); }
         .btn-submit { width: 100%; padding: 16px; background: var(--dark); color: #fff; border: none; font-weight: 800; text-transform: uppercase; font-size: 1.1rem; cursor: pointer; transition: background 0.3s; border-radius: 4px; margin-top: 10px; }
         .btn-submit:hover { background: var(--gold); color: var(--dark); }
-        .success-msg { display: none; margin-top: 20px; padding: 15px; background: #e8f5e9; color: #2e7d32; font-weight: 700; border-radius: 4px; }
-        .error-msg { display: none; margin-top: 20px; padding: 15px; background: #ffebee; color: #c62828; font-weight: 700; border-radius: 4px; }
 
         .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-decoration: none; z-index: 999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .share-float { position: fixed; bottom: 100px; right: 25px; background: #1DA1F2; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; z-index: 999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; border: none; }
+        .share-float:hover { transform: scale(1.1); }
 
         footer { background: var(--dark); color: #888; text-align: center; padding: 40px 20px; }
         footer h3 { color: var(--gold); margin-bottom: 10px; font-weight: 800; }
         footer p { margin-bottom: 5px; }
 
+        .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .admin-modal-content { background: #fff; padding: 30px; border-radius: 10px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; }
+        .admin-modal-content .close { position: absolute; top: 10px; right: 20px; font-size: 2rem; cursor: pointer; }
+        .admin-modal-content h2 { text-align: center; margin-bottom: 20px; color: var(--dark); }
+        .admin-modal-content input, .admin-modal-content textarea { width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .admin-modal-content .btn-admin { background: var(--gold); color: var(--dark); font-weight: 800; padding: 10px; border: none; border-radius: 4px; width: 100%; margin-top: 10px; cursor: pointer; }
+        .admin-modal-content .btn-danger { background: #dc3545; color: white; font-weight: 800; padding: 5px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+        .admin-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #eee; }
+        .admin-item span { flex: 1; margin-right: 10px; word-break: break-all; }
+
+        .share-section { background: var(--gray); padding: 40px 20px; text-align: center; }
+        .share-box { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; border: 2px solid var(--gold); }
+        .share-box textarea { width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; font-family: 'Montserrat', sans-serif; }
+        .btn-copy { background: var(--dark); color: white; padding: 12px 30px; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        .btn-copy:hover { background: var(--gold); color: var(--dark); }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             nav ul { gap: 15px; flex-wrap: wrap; }
             .form-container { box-shadow: none; padding: 30px 20px; }
-            header { padding: 20px 0; }
-            .logo-huge { height: 120px; }
+            header { min-height: 150px; padding: 15px 0; }
+            .logo-huge { width: 95%; max-width: 400px; }
             .hero { background-attachment: scroll; }
+            .wa-float, .share-float { width: 50px; height: 50px; font-size: 1.5rem; }
+            .share-float { bottom: 90px; right: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="https://i.postimg.cc/PrrG2JLk/1790bb36-980b-4154-8a36-002fcd341ef7.png" alt="Logo Palomares" class="logo-huge">
+    <header id="headerLogo">
+        <img src="https://i.postimg.cc/W3gTwW1Z/Whats-App-Image-2026-08-06-at-11-25-25-PM.jpg" alt="Logo Palomares" class="logo-huge">
     </header>
 
     <nav>
@@ -108,66 +133,30 @@
 
     <section id="portafolio" class="section">
         <h2 class="section-title">Nuestros Trabajos</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item"><img src="https://i.postimg.cc/Jh6npvxy/Whats-App-Image-2026-08-06-at-8-05-14-PM.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/mDKrs90z/Whats-App-Image-2026-08-06-at-8-05-15-PM-1.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/SNFK1W6r/Whats-App-Image-2026-08-06-at-8-05-15-PM-2.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/XqMnhbCF/Whats-App-Image-2026-08-06-at-8-05-15-PM-4.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/8zkNxwjm/Whats-App-Image-2026-08-06-at-8-05-15-PM.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/wMcYGsz5/Whats-App-Image-2026-08-06-at-8-05-16-PM-1.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/zGfYxBcM/Whats-App-Image-2026-08-06-at-8-05-16-PM-2.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/QM2LNqxY/Whats-App-Image-2026-08-06-at-8-05-16-PM-3.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/FzxwZ5gX/Whats-App-Image-2026-08-06-at-8-05-16-PM-4.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/vTGND2R3/Whats-App-Image-2026-08-06-at-8-05-16-PM-5.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/Nffncnky/Whats-App-Image-2026-08-06-at-8-05-16-PM-6.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/W3w9RmD8/Whats-App-Image-2026-08-06-at-8-05-17-PM-1.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/ZKRwgdJ3/Whats-App-Image-2026-08-06-at-8-05-17-PM-2.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/T35C2vLv/Whats-App-Image-2026-08-06-at-8-05-17-PM-3.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/fybf6Gn8/Whats-App-Image-2026-08-06-at-8-05-17-PM-4.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/bNsRLfRV/Whats-App-Image-2026-08-06-at-8-05-17-PM-5.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/fLzc9GLk/Whats-App-Image-2026-08-06-at-8-05-17-PM-6.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/8c3Mxsbc/Whats-App-Image-2026-08-06-at-8-05-17-PM.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/13DwYmV5/Whats-App-Image-2026-08-06-at-8-05-18-PM-1.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/zB2gR34Y/Whats-App-Image-2026-08-06-at-8-05-18-PM-2.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/RVHHNSR8/Whats-App-Image-2026-08-06-at-8-05-18-PM-3.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/rpQdvKVp/Whats-App-Image-2026-08-06-at-8-05-18-PM-4.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/ZnyCBHrB/Whats-App-Image-2026-08-06-at-8-05-18-PM-5.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/SNCfH7wW/Whats-App-Image-2026-08-06-at-8-05-18-PM-6.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/Zq786fyF/Whats-App-Image-2026-08-06-at-8-05-18-PM.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/d1gGxL6j/Whats-App-Image-2026-08-06-at-8-05-19-PM-1.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-            <div class="portfolio-item"><img src="https://i.postimg.cc/nVQ4QGVR/Whats-App-Image-2026-08-06-at-8-05-19-PM.jpg" alt="Trabajo Palomares"><div class="portfolio-text"><h4>Obra Realizada</h4></div></div>
-        </div>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
     </section>
 
     <section id="servicios" class="services">
         <h2 class="section-title">Nuestros Servicios</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
-                <h3>Diseño y Planos</h3>
-                <p>Elaboración de planos arquitectónicos, estructurales y de instalaciones.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
-                <h3>Construcción</h3>
-                <p>Ejecución de obra civil, cimentaciones y estructuras de concreto.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-paint-roller"></i></div>
-                <h3>Remodelación</h3>
-                <p>Renovación de cocinas, baños, fachadas, plomería y electricidad.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-snowflake"></i></div>
-                <h3>Climas</h3>
-                <p>Venta, instalación y mantenimiento de aires acondicionados.</p>
-            </div>
+        <div class="services-grid" id="servicesGrid"></div>
+    </section>
+
+    <section class="share-section" id="compartir">
+        <div class="share-box">
+            <h3><i class="fas fa-share-alt" style="color: var(--gold);"></i> Comparte Nuestros Trabajos</h3>
+            <p style="color: #666; margin-bottom: 15px;">Copia este mensaje y compártelo con quien pueda necesitar nuestros servicios</p>
+            <textarea id="mensajeCompartir" readonly>¡Hola! Te comparto el portafolio de Construcciones Palomares, somos especialistas en construcción, remodelación e instalación de climas. 
+            
+Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
+            <button class="btn-copy" onclick="copiarMensaje()"><i class="fas fa-copy"></i> Copiar Mensaje</button>
+            <button class="btn-copy" onclick="compartirWhatsApp()" style="background: #25d366; margin-left: 10px;"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
+            <p id="mensajeCopiado" style="color: green; display: none; margin-top: 10px;">¡Mensaje copiado al portapapeles!</p>
         </div>
     </section>
 
     <section id="registro" class="form-section">
         <div class="form-container">
-            <img src="https://i.postimg.cc/PrrG2JLk/1790bb36-980b-4154-8a36-002fcd341ef7.png" alt="Logo Palomares" class="logo-huge">
+            <img src="https://i.postimg.cc/W3gTwW1Z/Whats-App-Image-2026-08-06-at-11-25-25-PM.jpg" alt="Logo Palomares" class="logo-huge">
             <h2>Solicita tu Cotización</h2>
             <p>Registra tus datos y en breve nos comunicaremos contigo.</p>
             
@@ -216,33 +205,273 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <button class="share-float" onclick="document.getElementById('compartir').scrollIntoView({behavior: 'smooth'})" title="Compartir">
+        <i class="fas fa-share-alt"></i>
+    </button>
+
+    <div id="adminModal" class="admin-modal">
+        <div class="admin-modal-content">
+            <span class="close" id="closeAdminModal">&times;</span>
+            <h2>Panel de Administración</h2>
+            <div id="adminLogin">
+                <input type="password" id="claveAdmin" placeholder="Ingresa la clave">
+                <button class="btn-admin" id="btnAccederAdmin">Acceder</button>
+                <p id="adminError" style="color:red; display:none;">Clave incorrecta</p>
+            </div>
+            <div id="adminPanel" style="display:none;">
+                <h4>Agregar Foto al Portafolio</h4>
+                <input type="text" id="nuevaFotoUrl" placeholder="URL de la imagen">
+                <button class="btn-admin" id="btnAgregarFoto">Agregar Foto</button>
+                <hr>
+                <h4>Fotos Actuales (Edita la descripción y guarda)</h4>
+                <div id="listaFotos"></div>
+                <hr>
+                <h4>Agregar Nuevo Servicio</h4>
+                <input type="text" id="nuevoServicioNombre" placeholder="Nombre del servicio">
+                <textarea id="nuevoServicioDesc" placeholder="Descripción del servicio"></textarea>
+                <button class="btn-admin" id="btnAgregarServicio">Agregar Servicio</button>
+                <hr>
+                <h4>Servicios Actuales</h4>
+                <div id="listaServicios"></div>
+                <hr>
+                <p style="font-size:0.8rem; color:#777;">Los cambios se guardan en tiempo real en Supabase.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // LÓGICA PARA ENVIAR EL FORMULARIO DIRECTO A WHATSAPP
-        document.getElementById('formCotizacion').addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita que la página se recargue
+        // ============================================
+        // 1. CONFIGURACIÓN SUPABASE
+        // ============================================
+        const supabaseUrl = 'https://rvvvlrbtmhfbkygzcebw.supabase.co';
+        const supabaseKey = 'sb_publishable_J2uG3_9SeR4VAWei9w_7bA_2WXxsSQ5';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // ============================================
+        // 2. RENDERIZAR DESDE SUPABASE
+        // ============================================
+        async function renderizarPortafolio() {
+            const grid = document.getElementById('portfolioGrid');
+            const { data, error } = await supabase.from('portafolio_palomares').select('*').order('created_at', { ascending: false });
+            if (error) { console.error('Error al cargar portafolio:', error); return; }
             
-            // Obtener los valores que el cliente escribió
+            grid.innerHTML = '';
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'portfolio-item';
+                div.innerHTML = `
+                    <img src="${item.url}" alt="Trabajo Palomares" loading="lazy">
+                    <div class="portfolio-text"><h4>${item.descripcion || 'Obra Realizada'}</h4></div>
+                `;
+                grid.appendChild(div);
+            });
+            actualizarListaAdminFotos(data);
+        }
+
+        async function renderizarServicios() {
+            const grid = document.getElementById('servicesGrid');
+            const { data, error } = await supabase.from('servicios_palomares').select('*').order('created_at', { ascending: true });
+            if (error) { console.error('Error al cargar servicios:', error); return; }
+            
+            grid.innerHTML = '';
+            data.forEach(serv => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <div class="service-icon"><i class="fas ${serv.icono || 'fa-tools'}"></i></div>
+                    <h3>${serv.nombre}</h3>
+                    <p>${serv.descripcion}</p>
+                `;
+                grid.appendChild(card);
+            });
+            actualizarListaAdminServicios(data);
+        }
+
+        // ============================================
+        // 3. FUNCIONES ADMIN (EDITAR Y ELIMINAR EN SUPABASE)
+        // ============================================
+        function actualizarListaAdminFotos(fotos) {
+            const lista = document.getElementById('listaFotos');
+            lista.innerHTML = '';
+            fotos.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'admin-item';
+                div.style.flexDirection = 'column';
+                div.style.alignItems = 'stretch';
+                div.style.border = '1px solid #eee';
+                div.style.padding = '10px';
+                div.style.marginBottom = '10px';
+                
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                        <span style="font-size:0.8rem; color:#666; flex:1;">${item.url.substring(0, 40)}...</span>
+                        <button class="btn-danger" onclick="eliminarFoto(${item.id})">🗑️ Eliminar</button>
+                    </div>
+                    <input type="text" id="descFoto_${item.id}" value="${item.descripcion || 'Obra Realizada'}" placeholder="Ej: Instalación de Clima" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                    <button class="btn-admin" style="background: var(--dark); color:#fff; padding: 8px; font-size:0.9rem; margin-top:5px;" onclick="guardarDescripcionFoto(${item.id})">💾 Guardar Descripción</button>
+                `;
+                lista.appendChild(div);
+            });
+        }
+
+        function actualizarListaAdminServicios(servicios) {
+            const lista = document.getElementById('listaServicios');
+            lista.innerHTML = '';
+            servicios.forEach(serv => {
+                const div = document.createElement('div');
+                div.className = 'admin-item';
+                div.innerHTML = `
+                    <span>${serv.nombre}</span>
+                    <button class="btn-danger" onclick="eliminarServicio(${serv.id})">🗑️ Eliminar</button>
+                `;
+                lista.appendChild(div);
+            });
+        }
+
+        async function guardarDescripcionFoto(id) {
+            const nuevoDesc = document.getElementById(`descFoto_${id}`).value;
+            const { error } = await supabase.from('portafolio_palomares').update({ descripcion: nuevoDesc }).eq('id', id);
+            if (error) { alert('Error al guardar en Supabase'); return; }
+            renderizarPortafolio();
+            alert('¡Descripción guardada en tiempo real!');
+        }
+
+        async function eliminarFoto(id) {
+            if (confirm('¿Seguro que quieres eliminar esta foto?')) {
+                const { error } = await supabase.from('portafolio_palomares').delete().eq('id', id);
+                if (error) { alert('Error al eliminar'); return; }
+                renderizarPortafolio();
+            }
+        }
+
+        async function eliminarServicio(id) {
+            if (confirm('¿Seguro que quieres eliminar este servicio?')) {
+                const { error } = await supabase.from('servicios_palomares').delete().eq('id', id);
+                if (error) { alert('Error al eliminar'); return; }
+                renderizarServicios();
+            }
+        }
+
+        // ============================================
+        // 4. FUNCIONES PARA COMPARTIR
+        // ============================================
+        function copiarMensaje() {
+            const mensaje = document.getElementById('mensajeCompartir');
+            mensaje.select();
+            document.execCommand('copy');
+            const copiado = document.getElementById('mensajeCopiado');
+            copiado.style.display = 'block';
+            setTimeout(() => { copiado.style.display = 'none'; }, 3000);
+        }
+
+        function compartirWhatsApp() {
+            const mensaje = document.getElementById('mensajeCompartir').value;
+            const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        // ============================================
+        // 5. INICIALIZAR
+        // ============================================
+        renderizarPortafolio();
+        renderizarServicios();
+
+        // ============================================
+        // 6. FORMULARIO WHATSAPP
+        // ============================================
+        document.getElementById('formCotizacion').addEventListener('submit', function(e) {
+            e.preventDefault();
             const nombre = document.getElementById('nombre').value;
             const telefono = document.getElementById('telefono').value;
             const direccion = document.getElementById('direccion').value;
             const tipo_trabajo = document.getElementById('tipo_trabajo').value;
-
-            // Crear el mensaje de texto que te va a llegar a tu WhatsApp
-            const mensaje = `¡Hola! Solicito una cotización desde la página web.%0A%0A*Nombre:* ${nombre}%0A*Teléfono:* ${telefono}%0A*Dirección:* ${direccion}%0A*Trabajo necesario:* ${tipo_trabajo}`;
-
-            // Tu número de WhatsApp (con código de país, sin signos)
+            const mensaje = `¡Hola! Soy ${nombre}, y quiero agradecerles por su atención. Estoy muy interesado en sus servicios y me gustaría solicitar una cotización para el siguiente proyecto:%0A%0A*Tipo de trabajo:* ${tipo_trabajo}%0A*Dirección:* ${direccion}%0A*Mi teléfono:* ${telefono}%0A%0AQuedo atento a su respuesta. ¡Gracias!`;
             const tuNumero = '522291051088';
-
-            // Crear el enlace de WhatsApp
             const urlWhatsApp = `https://wa.me/${tuNumero}?text=${mensaje}`;
-
-            // Redirigir al cliente a WhatsApp con el mensaje ya escrito
             window.location.href = urlWhatsApp;
-            
-            // Limpiar el formulario
             this.reset();
         });
+
+        // ============================================
+        // 7. PANEL DE ADMINISTRACIÓN (10 CLICS)
+        // ============================================
+        let contadorClics = 0;
+        let tiempoUltimoClic = 0;
+        const headerLogo = document.getElementById('headerLogo');
+        const adminModal = document.getElementById('adminModal');
+        const closeAdminModal = document.getElementById('closeAdminModal');
+        const adminLogin = document.getElementById('adminLogin');
+        const adminPanel = document.getElementById('adminPanel');
+        const claveAdminInput = document.getElementById('claveAdmin');
+        const btnAccederAdmin = document.getElementById('btnAccederAdmin');
+        const adminError = document.getElementById('adminError');
+        const CLAVE_CORRECTA = 'admin1310';
+
+        headerLogo.addEventListener('click', function(e) {
+            const ahora = Date.now();
+            if (ahora - tiempoUltimoClic > 2000) { contadorClics = 0; }
+            tiempoUltimoClic = ahora;
+            contadorClics++;
+            if (contadorClics >= 10) {
+                contadorClics = 0;
+                adminModal.style.display = 'flex';
+                adminLogin.style.display = 'block';
+                adminPanel.style.display = 'none';
+                claveAdminInput.value = '';
+                adminError.style.display = 'none';
+            }
+        });
+
+        closeAdminModal.addEventListener('click', () => adminModal.style.display = 'none');
+        window.addEventListener('click', (e) => { if (e.target === adminModal) adminModal.style.display = 'none'; });
+
+        btnAccederAdmin.addEventListener('click', () => {
+            if (claveAdminInput.value === CLAVE_CORRECTA) {
+                adminLogin.style.display = 'none';
+                adminPanel.style.display = 'block';
+                adminError.style.display = 'none';
+            } else {
+                adminError.style.display = 'block';
+            }
+        });
+
+        document.getElementById('btnAgregarFoto').addEventListener('click', async function() {
+            const url = document.getElementById('nuevaFotoUrl').value.trim();
+            if (url) {
+                const { error } = await supabase.from('portafolio_palomares').insert([{ url: url, descripcion: 'Obra Realizada' }]);
+                if (error) { alert('Error al agregar'); return; }
+                renderizarPortafolio();
+                document.getElementById('nuevaFotoUrl').value = '';
+                alert('¡Foto agregada en tiempo real!');
+            } else { alert('Por favor, ingresa una URL válida.'); }
+        });
+
+        document.getElementById('btnAgregarServicio').addEventListener('click', async function() {
+            const nombre = document.getElementById('nuevoServicioNombre').value.trim();
+            const desc = document.getElementById('nuevoServicioDesc').value.trim();
+            if (nombre && desc) {
+                const { error } = await supabase.from('servicios_palomares').insert([{ nombre: nombre, descripcion: desc, icono: 'fa-tools' }]);
+                if (error) { alert('Error al agregar'); return; }
+                renderizarServicios();
+                document.getElementById('nuevoServicioNombre').value = '';
+                document.getElementById('nuevoServicioDesc').value = '';
+                alert('¡Servicio agregado en tiempo real!');
+            } else { alert('Por favor, completa todos los campos.'); }
+        });
+
+        claveAdminInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') btnAccederAdmin.click(); });
+        document.getElementById('nuevaFotoUrl').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('btnAgregarFoto').click(); });
+        document.getElementById('nuevoServicioNombre').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('btnAgregarServicio').click(); });
+
+        // ============================================
+        // 8. TIEMPO REAL (Supabase Realtime)
+        // ============================================
+        // Esto hace que si haces un cambio, a todos los clientes se les actualice solito
+        supabase.channel('custom-all-channel')
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'portafolio_palomares' }, () => renderizarPortafolio())
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'servicios_palomares' }, () => renderizarServicios())
+          .subscribe();
     </script>
 </body>
 </html>
