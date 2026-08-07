@@ -133,7 +133,9 @@
 
     <section id="portafolio" class="section">
         <h2 class="section-title">Nuestros Trabajos</h2>
-        <div class="portfolio-grid" id="portfolioGrid"></div>
+        <div class="portfolio-grid" id="portfolioGrid">
+            <p style="text-align: center; color: #666; grid-column: 1 / -1;">Cargando trabajos...</p>
+        </div>
     </section>
 
     <section id="servicios" class="services">
@@ -147,7 +149,7 @@
             <p style="color: #666; margin-bottom: 15px;">Copia este mensaje y compártelo con quien pueda necesitar nuestros servicios</p>
             <textarea id="mensajeCompartir" readonly>¡Hola! Te comparto el portafolio de Construcciones Palomares, somos especialistas en construcción, remodelación e instalación de climas. 
             
-Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
+Mira nuestros trabajos aquí: https://macceisa.github.io/palomares.web/</textarea>
             <button class="btn-copy" onclick="copiarMensaje()"><i class="fas fa-copy"></i> Copiar Mensaje</button>
             <button class="btn-copy" onclick="compartirWhatsApp()" style="background: #25d366; margin-left: 10px;"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
             <p id="mensajeCopiado" style="color: green; display: none; margin-top: 10px;">¡Mensaje copiado al portapapeles!</p>
@@ -254,9 +256,19 @@ Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
         async function renderizarPortafolio() {
             const grid = document.getElementById('portfolioGrid');
             const { data, error } = await supabase.from('portafolio_palomares').select('*').order('created_at', { ascending: false });
-            if (error) { console.error('Error al cargar portafolio:', error); return; }
+            
+            if (error) {
+                console.error('Error al cargar portafolio:', error);
+                grid.innerHTML = `<p style="color:red; text-align:center; grid-column: 1 / -1;">Error al cargar fotos: ${error.message}</p>`;
+                return;
+            }
             
             grid.innerHTML = '';
+            if (data.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1 / -1;">Aún no hay fotos subidas.</p>';
+                return;
+            }
+
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'portfolio-item';
@@ -294,6 +306,10 @@ Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
         function actualizarListaAdminFotos(fotos) {
             const lista = document.getElementById('listaFotos');
             lista.innerHTML = '';
+            if (fotos.length === 0) {
+                lista.innerHTML = '<p style="color:#777; font-size:0.9rem;">No hay fotos para editar.</p>';
+                return;
+            }
             fotos.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'admin-item';
@@ -394,7 +410,7 @@ Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
         });
 
         // ============================================
-        // 7. PANEL DE ADMINISTRACIÓN (10 CLICS)
+        // 7. PANEL DE ADMINISTRACIÓN (10 CLICS - Ajustado a 5 segundos para celular)
         // ============================================
         let contadorClics = 0;
         let tiempoUltimoClic = 0;
@@ -410,9 +426,10 @@ Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
 
         headerLogo.addEventListener('click', function(e) {
             const ahora = Date.now();
-            if (ahora - tiempoUltimoClic > 2000) { contadorClics = 0; }
+            if (ahora - tiempoUltimoClic > 5000) { contadorClics = 0; } // 5 segundos
             tiempoUltimoClic = ahora;
             contadorClics++;
+            
             if (contadorClics >= 10) {
                 contadorClics = 0;
                 adminModal.style.display = 'flex';
@@ -467,7 +484,6 @@ Mira nuestros trabajos aquí: https://construccionespalomares.com</textarea>
         // ============================================
         // 8. TIEMPO REAL (Supabase Realtime)
         // ============================================
-        // Esto hace que si haces un cambio, a todos los clientes se les actualice solito
         supabase.channel('custom-all-channel')
           .on('postgres_changes', { event: '*', schema: 'public', table: 'portafolio_palomares' }, () => renderizarPortafolio())
           .on('postgres_changes', { event: '*', schema: 'public', table: 'servicios_palomares' }, () => renderizarServicios())
